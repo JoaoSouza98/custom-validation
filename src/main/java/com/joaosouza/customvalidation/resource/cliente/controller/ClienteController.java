@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class ClienteController {
 	
 	@PostMapping
-	public ResponseEntity<Void>insert(@Valid @RequestBody ClienteRequest request) {
+	public ResponseEntity insert(@Valid @RequestBody ClienteRequest request) {
+
+
 
 		return ResponseEntity.ok().build();
 	}
