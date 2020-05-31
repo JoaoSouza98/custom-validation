@@ -1,32 +1,38 @@
-package com.joaosouza.customvalidation.controller;
+package com.joaosouza.customvalidation.resource.cliente.request;
+
+import com.joaosouza.customvalidation.data.Cliente;
+import com.joaosouza.customvalidation.domain.enums.TipoCliente;
+import lombok.Builder;
+import lombok.Value;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.joaosouza.customvalidation.domain.enums.TipoCliente;
-
+@Value
+@Builder
 public class ClienteRequest {
 	
 	@NotBlank
 	@Size(min = 5, max = 120)
-	public final String nome;
+	String nome;
 
 	@NotBlank
 	@Email
-	public final String email;
+	String email;
 
 	@NotNull
-	public final TipoCliente tipo;
+	TipoCliente tipo;
 	
 	@NotBlank
-	public final String documento;
-	
-	public ClienteRequest(String nome, String email, TipoCliente tipo, String documento) {
-		this.nome = nome;
-		this.email = email;
-		this.tipo = tipo;
-		this.documento = documento;
+	String documento;
+
+	public static Cliente to(ClienteRequest obj) {
+		return Cliente.builder()
+				.nome(obj.nome)
+				.documento(obj.documento)
+				.email(obj.email)
+				.tipo(obj.tipo).build();
 	}
 }
